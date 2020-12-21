@@ -21,7 +21,7 @@ jobs:
       run: |
         cd tutorial
         chmod +x ./gradlew
-    - name: Build with Gradle - old-m2m
+    - name: Build with Gradle - tutorial
       run: |
         cd tutorial
         ./gradlew build
