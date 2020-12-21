@@ -1,6 +1,8 @@
 # Frontend and Mobile
 [![Andriod Actions Status](https://github.com/UBC-BEST/frontend-m2m/workflows/Android%20CI/badge.svg)](https://github.com/UBC-BEST/frontend-m2m/actions)
 
+The project above is based on this [tutorial](https://play.kotlinlang.org/hands-on/Networking%20and%20Data%20Storage%20with%20Kotlin%20Multiplatfrom%20Mobile/09_Creating_the_iOS_application) with some modifications. 
+
 If you have not already, please read the [docs](https://github.com/UBC-BEST/m2m-docs) first then come back here! 
 - [General App Architecture](https://developer.android.com/jetpack/guide)
 - [Setting up Unity](https://medium.com/@razvan_57516/how-to-embed-unity-3d-in-a-native-android-app-5d030673bbf4)
