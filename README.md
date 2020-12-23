@@ -7,6 +7,9 @@ cd tutorial
 ./gradlew build
 ```
 
+## Libraries we are currently using:
+- [Ktor](https://ktor.io/): HTTP requests 
+
 The project above is based on this [tutorial](https://play.kotlinlang.org/hands-on/Networking%20and%20Data%20Storage%20with%20Kotlin%20Multiplatfrom%20Mobile/09_Creating_the_iOS_application) with some modifications. 
 
 If you have not already, please read the [docs](https://github.com/UBC-BEST/m2m-docs) first then come back here! 
