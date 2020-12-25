@@ -1,8 +1,6 @@
 package com.example.tutorial.shared.cache
 
-import com.example.tutorial.shared.entity.RocketLaunch
-import com.example.tutorial.shared.entity.Rocket
-import com.example.tutorial.shared.entity.Links
+import com.example.tutorial.shared.entity.Todo
 
 internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
     private val database = AppDatabase(databaseDriverFactory.createDriver())
@@ -10,80 +8,25 @@ internal class Database(databaseDriverFactory: DatabaseDriverFactory) {
 
     internal fun clearDatabase() {
         dbQuery.transaction {
-            dbQuery.removeAllRockets()
-            dbQuery.removeAllLaunches()
+            dbQuery.removeAllTodo()
         }
     }
 
-    internal fun getAllLaunches(): List<RocketLaunch> {
-        return dbQuery.selectAllLaunchesInfo(::mapLaunchSelecting).executeAsList()
+    internal fun getAllTodos(): List<Todo> {
+        return dbQuery.selectAllTodo().executeAsList().map { Todo(todo = it) }
     }
-
-    private fun mapLaunchSelecting(
-        flightNumber: Long,
-        missionName: String,
-        launchYear: Int,
-        rocketId: String,
-        details: String?,
-        launchSuccess: Boolean?,
-        launchDateUTC: String,
-        missionPatchUrl: String?,
-        articleUrl: String?,
-        rocket_id: String?,
-        name: String?,
-        type: String?
-    ): RocketLaunch {
-        return RocketLaunch(
-            flightNumber = flightNumber.toInt(),
-            missionName = missionName,
-            launchYear = launchYear,
-            details = details,
-            launchDateUTC = launchDateUTC,
-            launchSuccess = launchSuccess,
-            rocket = Rocket(
-                id = rocketId,
-                name = name!!,
-                type = type!!
-            ),
-            links = Links(
-                missionPatchUrl = missionPatchUrl,
-                articleUrl = articleUrl
-            )
-        )
-    }
-
-    internal fun createLaunches(launches: List<RocketLaunch>) {
+    
+    internal fun createTodo(todos: List<Todo>) {
         dbQuery.transaction {
-            launches.forEach { launch ->
-                val rocket = dbQuery.selectRocketById(launch.rocket.id).executeAsOneOrNull()
-                if (rocket == null) {
-                    insertRocket(launch)
-                }
-
-                insertLaunch(launch)
+            todos.forEach {
+                insertTodo(it)
             }
         }
     }
 
-    private fun insertRocket(launch: RocketLaunch) {
-        dbQuery.insertRocket(
-            id = launch.rocket.id,
-            name = launch.rocket.name,
-            type = launch.rocket.type
-        )
-    }
-
-    private fun insertLaunch(launch: RocketLaunch) {
-        dbQuery.insertLaunch(
-            flightNumber = launch.flightNumber.toLong(),
-            missionName = launch.missionName,
-            launchYear = launch.launchYear,
-            rocketId = launch.rocket.id,
-            details = launch.details,
-            launchSuccess = launch.launchSuccess ?: false,
-            launchDateUTC = launch.launchDateUTC,
-            missionPatchUrl = launch.links.missionPatchUrl,
-            articleUrl = launch.links.articleUrl
+    private fun insertTodo(todo_to_input: Todo) {
+        dbQuery.insertTodo(
+            todo = todo_to_input.todo
         )
     }
 }
