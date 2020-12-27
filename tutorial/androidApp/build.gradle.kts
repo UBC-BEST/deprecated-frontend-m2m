@@ -1,10 +1,14 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     kotlin("android")
     id("kotlin-android-extensions")
     kotlin("plugin.serialization")
     id("com.squareup.sqldelight")
+    kotlin("kapt")
 }
+
 group = "com.example.tutorial"
 version = "1.0-SNAPSHOT"
 
@@ -24,8 +28,13 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.cardview:cardview:1.0.0")
+    implementation("com.auth0.android:auth0:1.8.0")
+    annotationProcessor("androidx.databinding:databinding-compiler:1.0.0")
 }
 android {
+    buildFeatures {
+        dataBinding = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
