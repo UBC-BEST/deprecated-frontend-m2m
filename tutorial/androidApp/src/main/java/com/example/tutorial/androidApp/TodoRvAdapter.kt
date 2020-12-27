@@ -1,5 +1,6 @@
 package com.example.tutorial.androidApp
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -9,7 +10,9 @@ import com.example.tutorial.shared.entity.Todo
 class TodoRvAdapter(var todos: List<Todo>) : RecyclerView.Adapter<TodoRvAdapter.TodoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
-        TODO("Not yet implemented")
+        return LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_launch, parent, false)
+            .run(::TodoViewHolder)
     }
 
     override fun getItemCount(): Int = todos.count()
