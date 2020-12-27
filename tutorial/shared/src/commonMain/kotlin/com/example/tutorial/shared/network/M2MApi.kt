@@ -8,7 +8,7 @@ import io.ktor.client.request.*
 
 class M2MApi {
     companion object {
-        private const val ENDPOINT = "http://localhost:3000/test";
+        private const val ENDPOINT = "https://m2m-gateway.herokuapp.com/test"
     }
     private val httpClient = HttpClient {
         install(JsonFeature) {
@@ -18,7 +18,6 @@ class M2MApi {
     }
 
     suspend fun getItems(): List<Todo> {
-        print(httpClient.get(ENDPOINT));
         return httpClient.get(ENDPOINT);
     }
 }
