@@ -7,4 +7,7 @@
     <string name="no_data">No data</string>
 
     <string name="todo_field">Todo: %s</string>
+    <string name="please_identify_yourself">Please, identify yourself.</string>
+    <string name="add_new">Add new todo item</string>
+    
 </resources>
