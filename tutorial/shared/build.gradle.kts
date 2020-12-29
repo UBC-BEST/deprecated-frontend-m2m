@@ -83,6 +83,7 @@ android {
         targetSdkVersion(30)
         versionCode = 1
         versionName = "1.0"
+        manifestPlaceholders(mapOf("authDomain" to "@string/com_auth0_domain", "auth0Scheme" to "demo"))
     }
     buildTypes {
         getByName("release") {

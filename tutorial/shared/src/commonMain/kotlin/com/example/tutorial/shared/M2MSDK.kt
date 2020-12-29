@@ -20,4 +20,8 @@ class M2MSDK(databaseDriverFactory: DatabaseDriverFactory) {
             }
         }
     }
+
+    @Throws(Exception::class) suspend fun addItem(item: String, accessToken: String?) {
+        api.addItem(item, accessToken)
+    }
 }

@@ -1,8 +1,10 @@
 package com.example.tutorial.androidApp
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.auth0.android.Auth0
+import com.auth0.android.authentication.AuthenticationException
+import com.auth0.android.provider.AuthCallback
 import com.auth0.android.provider.WebAuthProvider
+import com.auth0.android.result.Credentials
 import com.example.tutorial.androidApp.databinding.ActivityMainBinding
 import com.example.tutorial.shared.Greeting
 import com.example.tutorial.shared.M2MSDK
@@ -67,15 +72,60 @@ class MainActivity : AppCompatActivity() {
         // trigger login when login is pressed
         val loginButton = findViewById<Button>(R.id.login_button)
         loginButton.setOnClickListener{ login() }
+
+        // add new todo
+        val addItemButton = findViewById<Button>(R.id.add_new_todo_button)
+        val itemEditText = findViewById<EditText>(R.id.item)
+        addItemButton.setOnClickListener{
+            val item = itemEditText.text.toString()
+            mainScope.launch {
+                kotlin.runCatching {
+                    sdk.addItem(item, CredentialsManager.getAccessToken(this@MainActivity))
+                }.onSuccess {
+                    itemEditText.text.clear()
+                    Toast.makeText(this@MainActivity, "Item added", Toast.LENGTH_SHORT).show()
+                    displayToDo(true)
+                }.onFailure {
+                    Toast.makeText(this@MainActivity, "Sorry an error occured!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun login() {
         val account = Auth0(getString(R.string.auth0_client_id), getString(R.string.auth0_domain))
+        account.isOIDCConformant = true
+
+        WebAuthProvider.init(account)
+            .withScheme("demo")
+            .withAudience("https://m2m-gateway.herokuapp.com/test")
+            .start(this, object : AuthCallback {
+                override fun onFailure(dialog: Dialog) {
+                    runOnUiThread {
+                        dialog.show()
+                    }
+                }
+
+                override fun onFailure(exception: AuthenticationException?) {
+                    runOnUiThread {
+                        Toast.makeText(
+                            this@MainActivity, "Oops, something went wrong!",
+                            Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onSuccess(credentials: Credentials) {
+                    CredentialsManager.saveCredentials(this@MainActivity, credentials)
+                    binding?.loggedIn = true
+                    startActivity(intent)
+                }
+            })
     }
 
     // auth0 triggers intent on successful login
     override fun onNewIntent(intent: Intent?) {
         if (WebAuthProvider.resume(intent)) {
+            binding?.loggedIn = true
             return
         }
         super.onNewIntent(intent)
