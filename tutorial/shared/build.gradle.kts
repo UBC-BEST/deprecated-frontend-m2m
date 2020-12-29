@@ -58,6 +58,7 @@ kotlin {
                 implementation("com.google.android.material:material:1.2.0")
                 implementation("io.ktor:ktor-client-android:1.4.0")
                 implementation("com.squareup.sqldelight:android-driver:1.4.3")
+                implementation("com.auth0.android:auth0:1.8.0")
             }
         }
         val androidTest by getting {
@@ -76,6 +77,9 @@ kotlin {
     }
 }
 android {
+    defaultConfig {
+        manifestPlaceholders(mapOf("authDomain" to "@string/com_auth0_domain", "auth0Scheme" to "demo"))
+    }
     compileSdkVersion(30)
     sourceSets["main"].manifest.srcFile("src\\androidMain\\AndroidManifest.xml")
     defaultConfig {

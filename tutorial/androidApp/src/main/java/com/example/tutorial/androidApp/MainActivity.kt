@@ -21,6 +21,8 @@ import com.auth0.android.result.Credentials
 import com.example.tutorial.androidApp.databinding.ActivityMainBinding
 import com.example.tutorial.shared.Greeting
 import com.example.tutorial.shared.M2MSDK
+import com.example.tutorial.shared.auth.AuthenticationHandler
+import com.example.tutorial.shared.auth.CredentialsManager
 import com.example.tutorial.shared.cache.DatabaseDriverFactory
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -80,13 +82,13 @@ class MainActivity : AppCompatActivity() {
             val item = itemEditText.text.toString()
             mainScope.launch {
                 kotlin.runCatching {
-                    sdk.addItem(item, CredentialsManager.getAccessToken(this@MainActivity))
+                    sdk.addItem(item, CredentialsManager.getAccessToken())
                 }.onSuccess {
                     itemEditText.text.clear()
                     Toast.makeText(this@MainActivity, "Item added", Toast.LENGTH_SHORT).show()
                     displayToDo(true)
                 }.onFailure {
-                    Toast.makeText(this@MainActivity, "Sorry an error occured!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Sorry an error occurred!", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -99,27 +101,7 @@ class MainActivity : AppCompatActivity() {
         WebAuthProvider.init(account)
             .withScheme("demo")
             .withAudience("https://m2m-gateway.herokuapp.com/test")
-            .start(this, object : AuthCallback {
-                override fun onFailure(dialog: Dialog) {
-                    runOnUiThread {
-                        dialog.show()
-                    }
-                }
-
-                override fun onFailure(exception: AuthenticationException?) {
-                    runOnUiThread {
-                        Toast.makeText(
-                            this@MainActivity, "Oops, something went wrong!",
-                            Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                override fun onSuccess(credentials: Credentials) {
-                    CredentialsManager.saveCredentials(this@MainActivity, credentials)
-                    binding?.loggedIn = true
-                    startActivity(intent)
-                }
-            })
+            .start(this, AuthenticationHandler(this.applicationContext))
     }
 
     // auth0 triggers intent on successful login
