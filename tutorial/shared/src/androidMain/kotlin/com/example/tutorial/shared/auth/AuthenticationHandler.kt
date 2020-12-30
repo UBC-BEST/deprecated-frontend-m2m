@@ -15,7 +15,7 @@ class AuthenticationHandler(val context: Context) : AuthCallback {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 
-    override fun onFailure(exception: AuthenticationException?) {
+    override fun onFailure(exception: AuthenticationException) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 

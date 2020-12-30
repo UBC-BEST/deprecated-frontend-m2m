@@ -26,13 +26,13 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.cardview:cardview:1.0.0")
-    implementation("com.auth0.android:auth0:1.8.0")
+    implementation("com.auth0.android:auth0:1.29.2")
     annotationProcessor("androidx.databinding:databinding-compiler:1.0.0")
     implementation("io.ktor:ktor-auth:1.4.0")
 }
 android {
     defaultConfig {
-        manifestPlaceholders(mapOf("authDomain" to "@string/com_auth0_domain", "auth0Scheme" to "demo"))
+        manifestPlaceholders(mapOf("auth0Domain" to "@string/auth0_domain", "auth0Scheme" to "demo"))
     }
     buildFeatures {
         dataBinding = true
