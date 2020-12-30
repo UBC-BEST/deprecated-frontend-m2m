@@ -2,7 +2,9 @@ package com.example.tutorial.shared.auth
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import com.auth0.android.authentication.AuthenticationException
 import com.auth0.android.provider.AuthCallback
 import com.auth0.android.result.Credentials
@@ -16,7 +18,7 @@ class AuthenticationHandler(val context: Context) : AuthCallback {
     }
 
     override fun onFailure(exception: AuthenticationException) {
-        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "$text: $exception", Toast.LENGTH_SHORT).show()
     }
 
     override fun onSuccess(credentials: Credentials) {

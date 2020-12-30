@@ -95,13 +95,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun login() {
-        val account = Auth0(getString(R.string.auth0_client_id), getString(R.string.auth0_domain))
+        val account = Auth0(getString(R.string.com_auth0_client_id), getString(R.string.auth0_domain))
         account.isOIDCConformant = true
+        account.isLoggingEnabled = true
 
-        WebAuthProvider.init(account)
-            .withScheme("demo")
-            .withAudience("https://m2m-gateway.herokuapp.com/test")
-            .start(this, AuthenticationHandler(this.applicationContext))
+        WebAuthProvider.login(account)
+            .withScheme(getString(R.string.scheme))
+            .withAudience(getString(R.string.audience))
+            .start(this@MainActivity, object : AuthCallback {
+                override fun onFailure(dialog: Dialog) {
+                    Toast.makeText(this@MainActivity, AuthenticationHandler.text, Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onFailure(exception: AuthenticationException) {
+                    Toast.makeText(this@MainActivity, "${AuthenticationHandler.text}: $exception", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onSuccess(credentials: Credentials) {
+                    binding?.loggedIn = true
+                    CredentialsManager.saveCredentials(credentials)
+                    MainActivity()
+                }
+            })
     }
 
     // auth0 triggers intent on successful login
