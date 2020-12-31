@@ -4,7 +4,8 @@
     <string name="todo_field">Todo: %s</string>
     <string name="please_identify_yourself">Please, identify yourself.</string>
     <string name="add_new">Add new todo item</string>
-
+    <string name="com_auth0_client_id">123</string>
+    <string name="auth0_domain">test.auth0.com</string>
     <string name="add_item">Add item</string>
     <string name="scheme">"demo"</string>
     <string name="audience">"https://m2m-gateway.herokuapp.com/test"</string>
