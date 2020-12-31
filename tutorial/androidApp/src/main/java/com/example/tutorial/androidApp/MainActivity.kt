@@ -112,9 +112,13 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onSuccess(credentials: Credentials) {
-                    binding?.loggedIn = true
-                    CredentialsManager.saveCredentials(credentials)
-                    MainActivity()
+                    runOnUiThread {
+                        Runnable {
+                            binding?.loggedIn = true
+                            CredentialsManager.saveCredentials(credentials)
+                            startActivity(intent)
+                        }
+                    }
                 }
             })
     }
