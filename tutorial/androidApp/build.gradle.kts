@@ -31,6 +31,9 @@ dependencies {
     implementation("io.ktor:ktor-auth:1.4.0")
 }
 android {
+    dexOptions {
+        javaMaxHeapSize = "4g"
+    }
     defaultConfig {
         manifestPlaceholders(mapOf("auth0Domain" to "@string/auth0_domain", "auth0Scheme" to "demo"))
     }

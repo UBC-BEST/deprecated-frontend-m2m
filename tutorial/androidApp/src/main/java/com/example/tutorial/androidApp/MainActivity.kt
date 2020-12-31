@@ -21,7 +21,6 @@ import com.auth0.android.result.Credentials
 import com.example.tutorial.androidApp.databinding.ActivityMainBinding
 import com.example.tutorial.shared.Greeting
 import com.example.tutorial.shared.M2MSDK
-import com.example.tutorial.shared.auth.AuthenticationHandler
 import com.example.tutorial.shared.auth.CredentialsManager
 import com.example.tutorial.shared.cache.DatabaseDriverFactory
 import kotlinx.coroutines.MainScope
@@ -114,7 +113,6 @@ class MainActivity : AppCompatActivity() {
                 override fun onSuccess(credentials: Credentials) {
                     runOnUiThread {
                         Runnable {
-                            binding?.loggedIn = true
                             CredentialsManager.saveCredentials(credentials)
                             startActivity(intent)
                         }
