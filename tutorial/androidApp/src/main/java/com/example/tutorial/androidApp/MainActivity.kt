@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "Item added", Toast.LENGTH_SHORT).show()
                     displayToDo(true)
                 }.onFailure {
-                    Toast.makeText(this@MainActivity, "Sorry an error occurred!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Sorry an error occurred, could not add item!", Toast.LENGTH_SHORT).show()
                 }
             }
         }

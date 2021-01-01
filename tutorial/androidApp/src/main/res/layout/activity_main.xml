@@ -11,14 +11,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-  <EditText
-      android:id="@+id/item"
+  <Button
+      android:id="@+id/add_new_todo_button"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:inputType="text"
-      android:labelFor="@+id/item"
-      app:layout_constraintBottom_toTopOf="@+id/login_button"
-      android:text="@string/add_item"
+      android:text="@string/add_new"
+      app:layout_constraintBottom_toBottomOf="@+id/swipeContainer"
       android:visibility="@{loggedIn ? View.VISIBLE : View.GONE}"/>
 
   <Button
@@ -28,14 +26,6 @@
       android:text="@string/please_identify_yourself"
       app:layout_constraintBottom_toBottomOf="@+id/swipeContainer"
       android:visibility="@{loggedIn ? View.GONE : View.VISIBLE}"/>
-
-  <Button
-      android:id="@+id/add_new_todo_button"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="@string/add_new"
-      app:layout_constraintBottom_toBottomOf="@+id/swipeContainer"
-      android:visibility="@{loggedIn ? View.VISIBLE : View.GONE}"/>
 
   <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
       android:id="@+id/swipeContainer"
@@ -69,6 +59,19 @@
         android:layout_gravity="center" />
 
   </FrameLayout>
+
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item"
+    app:layout_constraintBottom_toTopOf="@+id/add_new_todo_button"
+    android:layout_marginEnd="15dp"
+    android:layout_marginBottom="30dp"
+    android:layout_marginStart="15dp"
+    android:visibility="@{loggedIn ? View.VISIBLE : View.GONE}"
+    android:autofillHints="Add new todo"
+    android:inputType="text"
+    android:labelFor="@+id/item"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

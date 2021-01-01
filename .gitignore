@@ -87,3 +87,4 @@ lint/tmp/
 #hprof
 java_pid8848.hprof
 tutorial/java_pid8848.hprof
+.hprof
