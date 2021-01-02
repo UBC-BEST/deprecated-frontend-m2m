@@ -1,6 +1,7 @@
 package com.example.tutorial.androidApp
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -81,13 +82,14 @@ class MainActivity : AppCompatActivity() {
             val item = itemEditText.text.toString()
             mainScope.launch {
                 kotlin.runCatching {
-                    sdk.addItem(item, CredentialsManager.getAccessToken())
+                    sdk.addItem(item, CredentialsManager.getAccessToken(this@MainActivity))
                 }.onSuccess {
                     itemEditText.text.clear()
                     Toast.makeText(this@MainActivity, "Item added", Toast.LENGTH_SHORT).show()
                     displayToDo(true)
                 }.onFailure {
-                    Toast.makeText(this@MainActivity, "Sorry an error occurred, could not add item!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity,
+                        "Sorry an error occurred, could not add item: $it", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -101,24 +103,7 @@ class MainActivity : AppCompatActivity() {
         WebAuthProvider.login(account)
             .withScheme(getString(R.string.scheme))
             .withAudience(getString(R.string.audience))
-            .start(this@MainActivity, object : AuthCallback {
-                override fun onFailure(dialog: Dialog) {
-                    Toast.makeText(this@MainActivity, AuthenticationHandler.text, Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onFailure(exception: AuthenticationException) {
-                    Toast.makeText(this@MainActivity, "${AuthenticationHandler.text}: $exception", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onSuccess(credentials: Credentials) {
-                    runOnUiThread {
-                        Runnable {
-                            CredentialsManager.saveCredentials(credentials)
-                            startActivity(intent)
-                        }
-                    }
-                }
-            })
+            .start(this@MainActivity, AuthenticationHandler(this@MainActivity))
     }
 
     // auth0 triggers intent on successful login

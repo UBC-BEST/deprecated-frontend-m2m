@@ -5,6 +5,8 @@ import io.ktor.client.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
+import io.ktor.http.*
+import io.ktor.http.cio.*
 
 class M2MApi {
     companion object {
@@ -22,8 +24,16 @@ class M2MApi {
         return httpClient.get(ENDPOINT);
     }
 
-    suspend fun addItem(item: String, accessToken: String?) {
-
-        return httpClient.post(PRIVATE_ENDPOINT)
+    suspend fun addItem(item: String, accessToken: String?): Request {
+        return httpClient.post<Request> {
+            url {
+                host = PRIVATE_ENDPOINT
+                parameters.append("todo", item)
+            }
+            headers.append("Authorization", "Bearer $accessToken")
+            headers.append("Content-Type", "text/plain")
+            headers.append("Todo", item)
+            HttpMethod.Post
+        }
     }
 }
