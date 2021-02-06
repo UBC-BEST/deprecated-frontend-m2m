@@ -7,7 +7,7 @@ import android.util.Patterns
 import com.example.tutorial.androidApp.ui.auth.data.LoginRepository
 import com.example.tutorial.androidApp.ui.auth.data.Result
 
-import com.example.tutorial.androidApp.ui.auth.R
+import com.example.tutorial.androidApp.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
