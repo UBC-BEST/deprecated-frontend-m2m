@@ -29,4 +29,3 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
     }
 }
- # publish branch
