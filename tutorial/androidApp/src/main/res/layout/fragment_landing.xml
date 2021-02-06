@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.onboarding.LandingFragment">
+    tools:context=".ui.onboarding.LandingFragment"
+    android:fillViewport="true"
+    android:adjustViewBounds="true">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -48,7 +50,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="305dp">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/bottom_left_blob"
