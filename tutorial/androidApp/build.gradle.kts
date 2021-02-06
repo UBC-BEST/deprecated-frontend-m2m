@@ -30,6 +30,7 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("com.auth0.android:auth0:1.8.0")
     annotationProcessor("androidx.databinding:databinding-compiler:1.0.0")
+    implementation("com.google.android.gms:play-services-auth:19.0.0")
 }
 android {
     buildFeatures {
