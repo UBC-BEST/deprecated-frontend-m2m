@@ -15,6 +15,6 @@ class MainActivity : AppCompatActivity() {
             this.supportActionBar!!.hide()
         } catch (e: NullPointerException) {
         }
-        setContentView(R.layout.fragment_complete_exercises)
+        setContentView(R.layout.fragment_landing)
     }
 }

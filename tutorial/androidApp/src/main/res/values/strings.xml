@@ -19,4 +19,10 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="hands_showing">hand</string>
+    <string name="top_left_blob">top left blob</string>
+    <string name="app_name_m2m">app name: m2m</string>
+    <string name="top_right_blob">top right blob</string>
+    <string name="hand_with_palm_outstreched">hand with palm outstreched</string>
+    <string name="bottom_left_blob">bottom left blob</string>
+    <string name="bottom_right_blob">bottom right blob</string>
 </resources>
