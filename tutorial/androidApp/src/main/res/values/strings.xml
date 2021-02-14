@@ -25,4 +25,7 @@
     <string name="hand_with_palm_outstreched">hand with palm outstreched</string>
     <string name="bottom_left_blob">bottom left blob</string>
     <string name="bottom_right_blob">bottom right blob</string>
+    <string name="hands_landing">hands doing something</string>
+    <string name="info_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue suscipit mollis. Vivamus eros purus.</string>
+    <string name="title_text">Complete exercises</string>
 </resources>
