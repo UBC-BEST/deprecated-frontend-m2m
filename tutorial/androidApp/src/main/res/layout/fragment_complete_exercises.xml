@@ -5,16 +5,5 @@
     android:layout_height="match_parent"
     tools:context=".ui.onboarding.CompleteExercisesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-    <ImageView
-        android:id="@+id/hands_pinch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:src="@drawable/hands_pinch" />
+    <include layout="@layout/walkthrough_template" />
 </FrameLayout>
