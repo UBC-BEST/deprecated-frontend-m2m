@@ -70,4 +70,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    lintOptions {
+        isAbortOnError = false
+    }
 }
