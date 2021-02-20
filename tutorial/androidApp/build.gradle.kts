@@ -7,6 +7,7 @@ plugins {
     kotlin("plugin.serialization")
     id("com.squareup.sqldelight")
     kotlin("kapt")
+    id("kotlin-android")
 }
 
 group = "com.example.tutorial"
@@ -29,7 +30,17 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("com.auth0.android:auth0:1.8.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.annotation:annotation:1.1.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation("androidx.navigation:navigation-fragment:2.2.2")
+    implementation("androidx.navigation:navigation-ui:2.2.2")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.2.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.2.2")
     annotationProcessor("androidx.databinding:databinding-compiler:1.0.0")
+    implementation("com.google.android.gms:play-services-auth:19.0.0")
 }
 android {
     buildFeatures {
@@ -49,10 +60,14 @@ android {
         targetSdkVersion(29)
         versionCode = 1
         versionName = "1.0"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/checkmark"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/ic_checkmark"
+        app:layout_constraintBottom_toTopOf="@+id/first_layer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/what_would_you_like_to_train" />
+
+    <TextView
+        android:id="@+id/what_would_you_like_to_train"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What would you like to train?"
+        app:layout_constraintBottom_toTopOf="@+id/select_focus_areas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/select_focus_areas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select focus areas"
+        app:layout_constraintBottom_toTopOf="@+id/first_layer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/what_would_you_like_to_train" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/first_layer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/second_layer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select_focus_areas">
+
+        <ImageButton
+            android:id="@+id/hand_palm_button"
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/hand_palm_button"
+            app:layout_constraintBottom_toBottomOf="@+id/first_layer"
+            app:layout_constraintEnd_toStartOf="@+id/hand_balloon_button"
+            app:layout_constraintTop_toTopOf="@+id/first_layer" />
+
+        <ImageButton
+            android:id="@+id/hand_balloon_button"
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/hand_balloon_button"
+            app:layout_constraintBottom_toBottomOf="@+id/first_layer"
+            app:layout_constraintStart_toEndOf="@+id/hand_palm_button"
+            app:layout_constraintTop_toTopOf="@+id/first_layer" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/second_layer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/third_layer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_layer">
+
+        <ImageButton
+            android:id="@+id/hand_point_button"
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/hand_point_button"
+            app:layout_constraintBottom_toBottomOf="@+id/second_layer"
+            app:layout_constraintEnd_toStartOf="@+id/hand_pinch_button"
+            app:layout_constraintTop_toTopOf="@+id/second_layer" />
+
+        <ImageButton
+            android:id="@+id/hand_pinch_button"
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/hand_pinch_button"
+            app:layout_constraintBottom_toBottomOf="@+id/second_layer"
+            app:layout_constraintStart_toEndOf="@+id/hand_point_button"
+            app:layout_constraintTop_toTopOf="@+id/second_layer" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/third_layer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/second_layer">
+
+        <ImageButton
+            android:id="@+id/hand_phone_button"
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/hand_phone_button"
+            app:layout_constraintBottom_toBottomOf="@+id/third_layer"
+            app:layout_constraintEnd_toStartOf="@+id/wave_button"
+            app:layout_constraintTop_toTopOf="@+id/third_layer" />
+
+        <ImageButton
+            android:id="@+id/wave_button"
+            android:layout_width="170dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/wave_button"
+            app:layout_constraintBottom_toBottomOf="@+id/third_layer"
+            app:layout_constraintStart_toEndOf="@+id/hand_phone_button"
+            app:layout_constraintTop_toTopOf="@+id/third_layer" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
