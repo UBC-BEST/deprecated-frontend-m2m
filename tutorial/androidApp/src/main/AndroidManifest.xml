@@ -17,6 +17,9 @@
             android:name=".ui.onboarding.LandingFragment"
             android:label="@string/app_name" />
         <activity
+            android:name=".ui.onboarding.SelectTrainingActivity"
+            android:label="@string/app_name" />
+        <activity
             android:name=".ui.onboarding.WalkThroughActivity"
             android:label="@string/app_name" />
         <activity

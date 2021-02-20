@@ -29,7 +29,7 @@ class WalkThroughActivity : AppCompatActivity() {
             handBalloonButton.setOnClickListener {
                 setContentView(R.layout.fragment_track_progress)
                 handPhoneButton = findViewById(R.id.button_hands_phone)
-                handPhoneButton.setOnClickListener { setContentView(R.layout.fragment_auth) }
+                handPhoneButton.setOnClickListener { setContentView(R.layout.fragment_select_focus) }
             }
         }
     }
