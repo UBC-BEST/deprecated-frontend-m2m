@@ -29,7 +29,6 @@ For those interested in Unity (game) development:
 - check our slack channel for our UIUX designs!
 
 # Frontend Development and Architecture 
-![mvc](/photos/mvc.png "mvc")
 We will try to follow the [MVC pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller), or Model-view-Controller pattern. 
 
 ## Why use Model-view-Controller?
