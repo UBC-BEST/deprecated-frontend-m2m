@@ -1,27 +1,35 @@
-# Frontend and Mobile
-[![Andriod Actions Status](https://github.com/UBC-BEST/frontend-m2m/workflows/Android%20CI/badge.svg)](https://github.com/UBC-BEST/frontend-m2m/actions)
+# 👋 the mobile and frontend repo for M2M. 
+[![Android Actions Status](https://github.com/UBC-BEST/frontend-m2m/workflows/Android%20CI/badge.svg)](https://github.com/UBC-BEST/frontend-m2m/actions)
 
 Enter the project and build: 
+
+windows
 ```
 cd tutorial
-./gradlew build
+gradlew build
+```
+
+macos (I do not know)
+```
 ```
 
 The project above is based on this [tutorial](https://play.kotlinlang.org/hands-on/Networking%20and%20Data%20Storage%20with%20Kotlin%20Multiplatfrom%20Mobile/09_Creating_the_iOS_application) with some modifications. 
 
 If you have not already, please read the [docs](https://github.com/UBC-BEST/m2m-docs) first then come back here! 
+
+For those interested in mobile development:
 - [General App Architecture](https://developer.android.com/jetpack/guide)
-- [Setting up Unity](https://medium.com/@razvan_57516/how-to-embed-unity-3d-in-a-native-android-app-5d030673bbf4)
 - [PLEASE READ: Getting started with Kotlin MMP](https://kotlinlang.org/docs/mobile/create-first-app.html)
+
+For those interested in Unity (game) development:
+- [Setting up Unity](https://medium.com/@razvan_57516/how-to-embed-unity-3d-in-a-native-android-app-5d030673bbf4)
 - [Guide to C#](https://learn.unity.com/course/unity-c-survival-guide?_ga=2.63986025.775820160.1603564067-1572617516.1603424551&signup=true)
 
 # User Research/Design Process 
-[Wireframes and Prototypes](https://www.justinmind.com/blog/whats-the-difference-between-wireframes-and-prototypes/#:~:text=To%20break%20it%20down%2C%20website,more%20visual%20detail%20and%20interaction.&text=Read%20on%20for%20more%20on,web%20or%20mobile%20design%20process.)
-- In the coming weeks, our designer will produce low-fi skethces, wireframe and prototype. We will iterate on their original designs.
+- check our slack channel for our UIUX designs!
 
 # Frontend Development and Architecture 
-![mvc](/photos/mvc.png "mvc")
-We will be following the [MVC pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller), or Model-view-Controller pattern. 
+We will try to follow the [MVC pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller), or Model-view-Controller pattern. 
 
 ## Why use Model-view-Controller?
 - This design pattern divides business logic into 3 interconnected elements. 
@@ -30,55 +38,8 @@ We will be following the [MVC pattern](https://en.wikipedia.org/wiki/Model%E2%80
 - This way our code is not prone to dependencies and is able to adopt to changes quickly and robustly. 
 
 ### Model
-The model represents the data of the application and is independent of the user interface. It has **DIRECT** accesses to the data. The model deals with actions such as acssessing data from the database or changing the data in some way. So far, our model has these classes: 
+The model represents the data of the application and is independent of the user interface. It has **DIRECT** accesses to the data. The model deals with actions such as acssessing data from the database or changing the data in some way. So far, we plan that our model will have these classes: 
 
-<table>
-	<tbody>
-		<tr>
-			<td>Class</td>
-			<td>Attributes</td>
-			<td>Associated Methods</td>
-		</tr>
-		<tr>
-			<td rowspan="2">User</td>
-			<td>personal data such as name</td>
-			<td>getUserData(), updateUserData()</td>
-		</tr>
-		<tr>
-			<td>uid/token/credential</td>
-			<td>login(), logout(), signUp()</td>
-		</tr>
-		<tr>
-			<td rowspan="2">Game</td>
-			<td>score</td>
-			<td>getScore(), generateScore()</td>
-		</tr>
-		<tr>
-			<td>data</td>
-			<td>updateData(), getData()</td>
-		</tr>
-		<tr>
-			<td rowspan="2">Sensor</td>
-			<td>data</td>
-			<td>updateData(), getData()</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td rowspan="2">Networking</td>
-			<td>data</td>
-			<td>updateData(), syncData()</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-		</tr>
-	</tbody>
-</table>
-
-### More info on each class
 #### User
 This class is mainly going to be used for authenticating the user into the app.
 
@@ -88,10 +49,8 @@ Since we will be creating many games, we will be extending our games to this sup
 #### Sensor
 This class will be dealing with the therapy glove's data. Right now we don't have much information on the therapy glove so don't worry about this class until we have more information.
 
-#### Networking
+#### Networking (API)
 This class will deal with connecting to the server or backend, mainly dealing with data processing. Networking could also fit into controller but we will leave it in model for now. 
-
-These are not our finalized classes or methods. You may be wondering why these classes are super vague. We want to be able to take advantage of inheritance and by making our classes vague enough so that we can extend other classses, we can reduce the amount of code we need to write. 
 
 ### View 
 This can simply be thought of as what the user sees, or the user interface. All this component does is display information. There should be almost no logic in dealing with data processing or manipulation. Our screens will be the views. 
@@ -107,6 +66,7 @@ When the user interacts with the user interface, the controller either directs t
 - for each class, make a new file 
 - at the top of the file, make a comment about what the class represents. An example looks like 
 ```
+
  /**
  * A group of *members*.
  *
@@ -131,4 +91,3 @@ Usually you can combine **MODIFIES** and **EFFECTS** into one sentence and if yo
      */
 
      fun add(member: T): Int { ... }
-```
