@@ -15,3 +15,4 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this@MainActivity, LandingFragment::class.java))
     }
 }
+ 
