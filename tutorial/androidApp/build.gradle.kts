@@ -35,6 +35,10 @@ dependencies {
     implementation("androidx.annotation:annotation:1.1.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation("androidx.navigation:navigation-fragment:2.2.2")
+    implementation("androidx.navigation:navigation-ui:2.2.2")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.2.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.2.2")
     annotationProcessor("androidx.databinding:databinding-compiler:1.0.0")
     implementation("com.google.android.gms:play-services-auth:19.0.0")
 }
@@ -62,5 +66,8 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
