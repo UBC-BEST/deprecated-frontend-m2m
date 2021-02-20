@@ -67,6 +67,9 @@ android {
             isMinifyEnabled = false
         }
     }
+    lintOptions {
+        isAbortOnError = false
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }

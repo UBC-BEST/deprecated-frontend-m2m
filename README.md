@@ -66,6 +66,7 @@ When the user interacts with the user interface, the controller either directs t
 - for each class, make a new file 
 - at the top of the file, make a comment about what the class represents. An example looks like 
 ```
+
  /**
  * A group of *members*.
  *
@@ -90,4 +91,3 @@ Usually you can combine **MODIFIES** and **EFFECTS** into one sentence and if yo
      */
 
      fun add(member: T): Int { ... }
-```
