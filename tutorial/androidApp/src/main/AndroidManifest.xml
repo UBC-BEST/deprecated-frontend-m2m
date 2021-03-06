@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tutorial.androidApp">
+    package="com.example.tutorial.androidApp" >
 
     <supports-screens
         android:anyDensity="true"
@@ -12,7 +12,7 @@
     <application
         android:allowBackup="false"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".ui.onboarding.LandingFragment"
             android:label="@string/app_name" />
@@ -24,11 +24,11 @@
             android:label="@string/app_name" />
         <activity
             android:name=".ui.main.HomeActivity"
-            android:label="@string/title_activity_home" />
-        <activity android:name=".MainActivity">
+            android:label="home" />
+
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
