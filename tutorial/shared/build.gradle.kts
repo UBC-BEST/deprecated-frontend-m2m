@@ -45,6 +45,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:1.4.0")
                 implementation("io.ktor:ktor-client-serialization:1.4.0")
                 implementation("com.squareup.sqldelight:runtime:1.4.3")
+                implementation("io.ktor:ktor-client-logging:1.4.0")
             }
         }
         val commonTest by getting {
