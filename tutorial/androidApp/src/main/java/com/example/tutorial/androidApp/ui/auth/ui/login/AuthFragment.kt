@@ -16,8 +16,13 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.tutorial.androidApp.R
+import com.example.tutorial.androidApp.ui.auth.ui.main.LoginFragment
 
 class AuthFragment : Fragment() {
+
+    companion object {
+        fun newInstance() = AuthFragment()
+    }
 
     private lateinit var loginViewModel: LoginViewModel
 

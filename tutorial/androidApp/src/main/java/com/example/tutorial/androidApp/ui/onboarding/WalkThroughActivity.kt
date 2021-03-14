@@ -1,9 +1,12 @@
 package com.example.tutorial.androidApp.ui.onboarding
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tutorial.androidApp.R
+import com.example.tutorial.androidApp.ui.auth.LoginActivity
+import com.example.tutorial.androidApp.ui.auth.ui.login.AuthFragment
 
 
 class WalkThroughActivity : AppCompatActivity() {
@@ -29,7 +32,13 @@ class WalkThroughActivity : AppCompatActivity() {
             handBalloonButton.setOnClickListener {
                 setContentView(R.layout.fragment_track_progress)
                 handPhoneButton = findViewById(R.id.button_hands_phone)
-                handPhoneButton.setOnClickListener { setContentView(R.layout.fragment_select_focus) }
+                handPhoneButton.setOnClickListener {
+                    startActivity(
+                        Intent(
+                            this@WalkThroughActivity, LoginActivity::class.java
+                        )
+                    )
+                }
             }
         }
     }

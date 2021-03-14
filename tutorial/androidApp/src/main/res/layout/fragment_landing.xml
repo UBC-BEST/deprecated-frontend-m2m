@@ -7,7 +7,7 @@
     android:adjustViewBounds="true"
     android:fillViewport="true"
     android:orientation="vertical"
-    tools:context=".ui.onboarding.LandingFragment"
+    tools:context=".ui.onboarding.LandingActivity"
     android:id="@+id/landing">
 
     <RelativeLayout
