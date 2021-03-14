@@ -16,7 +16,6 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.tutorial.androidApp.R
-import com.example.tutorial.androidApp.ui.auth.ui.main.LoginFragment
 
 class AuthFragment : Fragment() {
 
