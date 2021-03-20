@@ -36,4 +36,8 @@ class SelectTrainingActivity : AppCompatActivity() {
 
         // if any of these buttons are clicked, add training to user
     }
+
+    override fun onBackPressed() {
+        return
+    }
 }

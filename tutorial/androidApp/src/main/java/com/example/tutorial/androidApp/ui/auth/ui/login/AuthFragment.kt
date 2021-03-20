@@ -1,5 +1,6 @@
 package com.example.tutorial.androidApp.ui.auth.ui.login
 
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.annotation.StringRes
@@ -16,6 +17,8 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.tutorial.androidApp.R
+import com.example.tutorial.androidApp.ui.main.HomeActivity
+import com.example.tutorial.androidApp.ui.onboarding.SelectTrainingActivity
 
 class AuthFragment : Fragment() {
 
@@ -107,10 +110,12 @@ class AuthFragment : Fragment() {
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome) + model.displayName
-        // TODO : initiate successful logged in experience
-        val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
+        val returningUser = true
+        if (returningUser) {
+            startActivity(Intent(activity, HomeActivity::class.java))
+        } else {
+            startActivity(Intent(activity, SelectTrainingActivity::class.java))
+        }
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
