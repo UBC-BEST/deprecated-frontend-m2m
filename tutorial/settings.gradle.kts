@@ -19,6 +19,6 @@ pluginManagement {
 rootProject.name = "tutorial"
 
 
-include(":androidApp")
+include(":android")
 include(":shared")
 

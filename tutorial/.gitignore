@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 /androidApp/google-services.json
+/android/google-services.json
+/shared/google-services.json

@@ -6,6 +6,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android-extensions")
     id("com.squareup.sqldelight")
+    id("com.google.gms.google-services")
 }
 group = "com.example.tutorial"
 version = "1.0-SNAPSHOT"
@@ -59,6 +60,7 @@ kotlin {
                 implementation("com.google.android.material:material:1.2.0")
                 implementation("io.ktor:ktor-client-android:1.4.0")
                 implementation("com.squareup.sqldelight:android-driver:1.4.3")
+                implementation("com.google.firebase:firebase-bom:26.8.0")
             }
         }
         val androidTest by getting {
@@ -104,7 +106,8 @@ val packForXcode by tasks.creating(Sync::class) {
     val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
     val sdkName = System.getenv("SDK_NAME") ?: "iphonesimulator"
     val targetName = "ios" + if (sdkName.startsWith("iphoneos")) "Arm64" else "X64"
-    val framework = kotlin.targets.getByName<KotlinNativeTarget>(targetName).binaries.getFramework(mode)
+    val framework =
+        kotlin.targets.getByName<KotlinNativeTarget>(targetName).binaries.getFramework(mode)
     inputs.property("mode", mode)
     dependsOn(framework.linkTask)
     val targetDir = File(buildDir, "xcode-frameworks")
