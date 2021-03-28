@@ -1,18 +1,39 @@
 # 👋 the mobile and frontend repo for M2M. 
 [![Android Actions Status](https://github.com/UBC-BEST/frontend-m2m/workflows/Android%20CI/badge.svg)](https://github.com/UBC-BEST/frontend-m2m/actions)
 
+## Getting Started - General 
+
+### Building the proejct
 Enter the project and build: 
 
 windows
 ```
-cd tutorial
-gradlew build
+cd app
+gradlew build clean
 ```
 
-macos (I do not know)
+macos 
 ```
+cd app
+gradle build
 ```
 
+For more information you can look here: https://docs.gradle.org/current/userguide/command_line_interface.html
+
+### Connecting to Firebase 
+When you clone this project, you will see that there are two `google-services.json` files in the `app/android` folder and `app/shared` folder. You need to replace those with the real `google-services.json` file that you must download from Firebase Console.
+
+Go to Firebase Console and login with the M2M gmail. Ask Lucy or Roshan for assistance. 
+
+Then after you project successfully builds and you can connect to Firebase, run these two lines in the terminal: 
+```bash
+git update-index --skip-worktree ./app/shared/google-services.json
+git update-index --skip-worktree ./app/android/google-services.json
+```
+These two lines remove these files from the worktree so you don't overwrite them when you pull from Github.
+
+
+## More Info On Getting Started 
 The project above is based on this [tutorial](https://play.kotlinlang.org/hands-on/Networking%20and%20Data%20Storage%20with%20Kotlin%20Multiplatfrom%20Mobile/09_Creating_the_iOS_application) with some modifications. 
 
 If you have not already, please read the [docs](https://github.com/UBC-BEST/m2m-docs) first then come back here! 
@@ -21,7 +42,7 @@ For those interested in mobile development:
 - [General App Architecture](https://developer.android.com/jetpack/guide)
 - [PLEASE READ: Getting started with Kotlin MMP](https://kotlinlang.org/docs/mobile/create-first-app.html)
 
-For those interested in Unity (game) development:
+For those interested in Unity (game) development - we don't have to use Unity. Since we are short on time feel free to experiment with any game engine you would like to:
 - [Setting up Unity](https://medium.com/@razvan_57516/how-to-embed-unity-3d-in-a-native-android-app-5d030673bbf4)
 - [Guide to C#](https://learn.unity.com/course/unity-c-survival-guide?_ga=2.63986025.775820160.1603564067-1572617516.1603424551&signup=true)
 
@@ -36,27 +57,6 @@ We will try to follow the [MVC pattern](https://en.wikipedia.org/wiki/Model%E2%8
 - This limits the user from seeing the internal structure of the application and it also seperates components from each other in that when we make a change in one part of the code we don't have to go chasing for errors in other portions. 
 - When executed correctly, if we were is make a change in the model, we would not have to make changes in the view or the controller. 
 - This way our code is not prone to dependencies and is able to adopt to changes quickly and robustly. 
-
-### Model
-The model represents the data of the application and is independent of the user interface. It has **DIRECT** accesses to the data. The model deals with actions such as acssessing data from the database or changing the data in some way. So far, we plan that our model will have these classes: 
-
-#### User
-This class is mainly going to be used for authenticating the user into the app.
-
-#### Game
-Since we will be creating many games, we will be extending our games to this super class. The super Game class will be generic enough to represent all games but specific enough to still be a class of its own. 
-
-#### Sensor
-This class will be dealing with the therapy glove's data. Right now we don't have much information on the therapy glove so don't worry about this class until we have more information.
-
-#### Networking (API)
-This class will deal with connecting to the server or backend, mainly dealing with data processing. Networking could also fit into controller but we will leave it in model for now. 
-
-### View 
-This can simply be thought of as what the user sees, or the user interface. All this component does is display information. There should be almost no logic in dealing with data processing or manipulation. Our screens will be the views. 
-
-### Controller 
-When the user interacts with the user interface, the controller either directs these actions to the view or the model. For instance, if the user is playing a game and clicks on a button, the user data will be sent to the model and the change in the appearance of the button will be sent to the view. 
 
 ## Code Styles 
 - If you want to read the official documentation on code style for Kotlin, click [here](https://kotlinlang.org/docs/reference/kotlin-doc.html).
