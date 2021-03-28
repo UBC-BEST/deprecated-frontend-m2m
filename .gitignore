@@ -89,4 +89,5 @@ java_pid8848.hprof
 tutorial/java_pid8848.hprof
 
 # google-services.json
-tutorial/androidApp/google-services.json
+app/android/google-services.json
+app/shared/google-services.json
