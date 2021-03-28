@@ -19,23 +19,6 @@ class LoginActivity : AppCompatActivity() {
         } catch (e: NullPointerException) {
             println(e)
         }
-        firebaseAuth = FirebaseAuth.getInstance()
-        firebaseAuth.signInWithEmailAndPassword("test@test.com", "password").addOnCompleteListener {
-            if (it.isSuccessful) {
-                Log.d("DEBUG", "signInWithEmailAndPassword: Successful")
-            } else {
-                Log.w("WARN", it.exception)
-            }
-        }
-
-        firebaseAuth.createUserWithEmailAndPassword("test@test.com", "password")
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    Log.d("DEBUG", "createUserWithEmailAndPassword: Successful")
-                } else {
-                    Log.w("WARN", it.exception)
-                }
-            }
 
         setContentView(R.layout.login_activity)
         if (savedInstanceState == null) {

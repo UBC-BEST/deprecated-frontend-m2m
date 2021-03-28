@@ -5,5 +5,6 @@ package com.example.tutorial.android.ui.auth.data.model
  */
 data class LoggedInUser(
     val userId: String,
-    val displayName: String
+    val displayName: String,
+    val newUser: Boolean
 )
