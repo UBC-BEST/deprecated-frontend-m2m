@@ -1,4 +1,4 @@
-# 👋 the mobile and frontend repo for M2M. 
+# 👋 the mobile and frontend repo for m2m. 
 [![Android Actions Status](https://github.com/UBC-BEST/frontend-m2m/workflows/Android%20CI/badge.svg)](https://github.com/UBC-BEST/frontend-m2m/actions)
 
 ## Getting Started - General 
@@ -23,14 +23,7 @@ For more information you can look here: https://docs.gradle.org/current/userguid
 ### Connecting to Firebase 
 When you clone this project, you will see that there are two `google-services.json` files in the `app/android` folder and `app/shared` folder. You need to replace those with the real `google-services.json` file that you must download from Firebase Console.
 
-Go to Firebase Console and login with the M2M gmail. Ask Lucy or Roshan for assistance. 
-
-Then after you project successfully builds and you can connect to Firebase, run these two lines in the terminal: 
-```bash
-git update-index --skip-worktree ./app/shared/google-services.json
-git update-index --skip-worktree ./app/android/google-services.json
-```
-These two lines remove these files from the worktree so you don't overwrite them when you pull from Github.
+Go to Firebase Console and login with the M2M gmail. Ask Lucy or Roshan for assistance. Make sure when you make commits you do not commit the real `google-services.json` file.
 
 
 ## More Info On Getting Started 
