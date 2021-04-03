@@ -1,5 +1,6 @@
 package com.example.tutorial.android.ui.auth.data
 
+import android.util.Log
 import com.example.tutorial.android.ui.auth.data.model.LoggedInUser
 
 /**
@@ -27,15 +28,35 @@ class LoginRepository(val dataSource: LoginDataSource) {
         dataSource.logout()
     }
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
+    fun login(username: String, password: String, isNew: Boolean): Boolean {
         // handle login
-        val result = dataSource.login(username, password)
-
-        if (result is Result.Success) {
-            setLoggedInUser(result.data)
+        val authCallback = object : AuthCallback {
+            override fun onAuthCallback(loggedInUser: LoggedInUser) {
+                Log.d("USER INFO: NAME?", loggedInUser.displayName)
+                Log.d("USER INFO: UUID?", loggedInUser.userId)
+                Log.d("USER INFO: NEW OR RETURNING?", loggedInUser.newUser.toString())
+                setLoggedInUser(loggedInUser)
+            }
         }
-
-        return result
+        if (isNew) {
+            try {
+                dataSource.signUpNewFirebaseUser(authCallback, username, password).run {
+                    return true
+                }
+            } catch (e: Exception) {
+                Log.e("ERROR LOGGING IN", e.toString())
+                return false
+            }
+        } else {
+            try {
+                dataSource.loginExistingFirebaseUser(authCallback, username, password).run {
+                    return true
+                }
+            } catch (e: Exception) {
+                Log.e("ERROR LOGGING IN", e.toString())
+                return false
+            }
+        }
     }
 
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {

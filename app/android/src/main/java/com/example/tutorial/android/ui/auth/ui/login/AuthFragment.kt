@@ -92,7 +92,7 @@ class AuthFragment : Fragment() {
         passwordEditText.addTextChangedListener(afterTextChangedListener)
         passwordEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                loginViewModel.login(
+                loginViewModel.signUp(
                     usernameEditText.text.toString(),
                     passwordEditText.text.toString()
                 )
@@ -102,7 +102,7 @@ class AuthFragment : Fragment() {
 
         loginButton.setOnClickListener {
             loadingProgressBar.visibility = View.VISIBLE
-            loginViewModel.login(
+            loginViewModel.signUp(
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
             )
@@ -110,11 +110,12 @@ class AuthFragment : Fragment() {
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val returningUser = true
-        if (returningUser) {
-            startActivity(Intent(activity, HomeActivity::class.java))
-        } else {
+        val newUser = model.newUser
+        val displayName = model.displayName
+        if (newUser) {
             startActivity(Intent(activity, SelectTrainingActivity::class.java))
+        } else {
+            startActivity(Intent(activity, HomeActivity::class.java))
         }
     }
 

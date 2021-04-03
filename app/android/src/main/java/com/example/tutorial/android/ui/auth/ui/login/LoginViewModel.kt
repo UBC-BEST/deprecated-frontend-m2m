@@ -1,5 +1,6 @@
 package com.example.tutorial.android.ui.auth.ui.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +9,9 @@ import com.example.tutorial.android.ui.auth.data.LoginRepository
 import com.example.tutorial.android.ui.auth.data.Result
 
 import com.example.tutorial.android.R
+import com.example.tutorial.android.ui.auth.data.model.LoggedInUser
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
     private lateinit var firebaseAuth: FirebaseAuth
@@ -19,15 +22,59 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun login(username: String, password: String) {
-        // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password)
+    fun signUp(username: String, password: String) {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        try {
+            firebaseAuth.createUserWithEmailAndPassword(username, password)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Log.d("AUTH", "createUserWithEmailAndPassword: Successful")
+                        val firebaseUser = firebaseAuth.currentUser
+                        val user = LoggedInUser(firebaseUser!!.uid, username, true)
+                        Log.d("USER INFO", user.newUser.toString())
+                        Log.d("USER INFO", user.displayName)
+                        _loginResult.value =
+                            LoginResult(
+                                success = LoggedInUserView(
+                                    displayName = username,
+                                    newUser = true
+                                )
+                            )
+                        Log.d("THIS IS FROM THE LOGIN VIEW MODEL", "Login/SignUp was successful.")
+                    } else {
+                        _loginResult.value = LoginResult(error = R.string.login_failed)
+                    }
+                }
+        } catch (e: FirebaseAuthUserCollisionException) {
+            Log.w("AUTH", e)
+        }
+    }
 
-        if (result is Result.Success) {
-            _loginResult.value =
-                LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-        } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
+    fun login(username: String, password: String) {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        try {
+            firebaseAuth.createUserWithEmailAndPassword(username, password)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Log.d("AUTH", "createUserWithEmailAndPassword: Successful")
+                        val firebaseUser = firebaseAuth.currentUser
+                        val user = LoggedInUser(firebaseUser!!.uid, username, false)
+                        Log.d("USER INFO", user.newUser.toString())
+                        Log.d("USER INFO", user.displayName)
+                        _loginResult.value =
+                            LoginResult(
+                                success = LoggedInUserView(
+                                    displayName = username,
+                                    newUser = false
+                                )
+                            )
+                        Log.d("THIS IS FROM THE LOGIN VIEW MODEL", "Login was successful.")
+                    } else {
+                        _loginResult.value = LoginResult(error = R.string.login_failed)
+                    }
+                }
+        } catch (e: FirebaseAuthUserCollisionException) {
+            Log.w("AUTH", e)
         }
     }
 

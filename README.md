@@ -25,7 +25,6 @@ When you clone this project, you will see that there are two `google-services.js
 
 Go to Firebase Console and login with the M2M gmail. Ask Lucy or Roshan for assistance. Make sure when you make commits you do not commit the real `google-services.json` file.
 
-
 ## More Info On Getting Started 
 The project above is based on this [tutorial](https://play.kotlinlang.org/hands-on/Networking%20and%20Data%20Storage%20with%20Kotlin%20Multiplatfrom%20Mobile/09_Creating_the_iOS_application) with some modifications. 
 
