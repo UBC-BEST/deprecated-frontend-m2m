@@ -1,0 +1,13 @@
+CREATE TABLE Todo (
+    todo TEXT NOT NULL
+);
+
+insertTodo:
+INSERT INTO Todo(todo)
+VALUES(?);
+
+removeAllTodo:
+DELETE FROM Todo;
+
+selectAllTodo:
+SELECT * FROM Todo;
