@@ -92,9 +92,10 @@ class AuthFragment : Fragment() {
         passwordEditText.addTextChangedListener(afterTextChangedListener)
         passwordEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                loginViewModel.signUp(
+                loginViewModel.tryAuthentication(
                     usernameEditText.text.toString(),
-                    passwordEditText.text.toString()
+                    passwordEditText.text.toString(),
+                    true
                 )
             }
             false
@@ -102,9 +103,10 @@ class AuthFragment : Fragment() {
 
         loginButton.setOnClickListener {
             loadingProgressBar.visibility = View.VISIBLE
-            loginViewModel.signUp(
+            loginViewModel.tryAuthentication(
                 usernameEditText.text.toString(),
-                passwordEditText.text.toString()
+                passwordEditText.text.toString(),
+                true
             )
         }
     }
