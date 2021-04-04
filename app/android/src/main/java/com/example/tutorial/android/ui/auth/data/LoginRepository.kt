@@ -28,37 +28,6 @@ class LoginRepository(val dataSource: LoginDataSource) {
         dataSource.logout()
     }
 
-    fun login(username: String, password: String, isNew: Boolean): Boolean {
-        // handle login
-        val authCallback = object : AuthCallback {
-            override fun onAuthCallback(loggedInUser: LoggedInUser) {
-                Log.d("USER INFO: NAME?", loggedInUser.displayName)
-                Log.d("USER INFO: UUID?", loggedInUser.userId)
-                Log.d("USER INFO: NEW OR RETURNING?", loggedInUser.newUser.toString())
-                setLoggedInUser(loggedInUser)
-            }
-        }
-        if (isNew) {
-            try {
-                dataSource.signUpNewFirebaseUser(authCallback, username, password).run {
-                    return true
-                }
-            } catch (e: Exception) {
-                Log.e("ERROR LOGGING IN", e.toString())
-                return false
-            }
-        } else {
-            try {
-                dataSource.loginExistingFirebaseUser(authCallback, username, password).run {
-                    return true
-                }
-            } catch (e: Exception) {
-                Log.e("ERROR LOGGING IN", e.toString())
-                return false
-            }
-        }
-    }
-
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {
         this.user = loggedInUser
         // If user credentials will be cached in local storage, it is recommended it be encrypted

@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
 import com.example.tutorial.android.ui.auth.data.LoginRepository
-import com.example.tutorial.android.ui.auth.data.Result
 
 import com.example.tutorial.android.R
 import com.example.tutorial.android.ui.auth.data.model.LoggedInUser
@@ -22,8 +21,17 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun signUp(username: String, password: String) {
+    fun tryAuthentication(username: String, password: String, newUser: Boolean) {
         val firebaseAuth = FirebaseAuth.getInstance()
+        if (newUser) {
+            signUp(username, password, firebaseAuth)
+        } else {
+            login(username, password, firebaseAuth)
+        }
+    }
+
+
+    private fun signUp(username: String, password: String, firebaseAuth: FirebaseAuth) {
         try {
             firebaseAuth.createUserWithEmailAndPassword(username, password)
                 .addOnCompleteListener {
@@ -40,7 +48,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
                                     newUser = true
                                 )
                             )
-                        Log.d("THIS IS FROM THE LOGIN VIEW MODEL", "Login/SignUp was successful.")
+                        Log.d("THIS IS FROM THE LOGIN VIEW MODEL", "SignUp was successful.")
                     } else {
                         _loginResult.value = LoginResult(error = R.string.login_failed)
                     }
@@ -50,10 +58,9 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         }
     }
 
-    fun login(username: String, password: String) {
-        val firebaseAuth = FirebaseAuth.getInstance()
+    private fun login(username: String, password: String, firebaseAuth: FirebaseAuth) {
         try {
-            firebaseAuth.createUserWithEmailAndPassword(username, password)
+            firebaseAuth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         Log.d("AUTH", "createUserWithEmailAndPassword: Successful")
