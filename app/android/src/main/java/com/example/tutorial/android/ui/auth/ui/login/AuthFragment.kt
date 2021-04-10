@@ -12,10 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import com.example.tutorial.android.R
 import com.example.tutorial.android.ui.main.HomeActivity
 import com.example.tutorial.android.ui.onboarding.SelectTrainingActivity
@@ -33,7 +30,7 @@ class AuthFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_auth, container, false)
+        return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,7 +38,7 @@ class AuthFragment : Fragment() {
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
-        val usernameEditText = view.findViewById<EditText>(R.id.username)
+        val usernameEditText = view.findViewById<EditText>(R.id.email)
         val passwordEditText = view.findViewById<EditText>(R.id.password)
         val loginButton = view.findViewById<Button>(R.id.login)
         val loadingProgressBar = view.findViewById<ProgressBar>(R.id.loading)
@@ -95,7 +92,7 @@ class AuthFragment : Fragment() {
                 loginViewModel.tryAuthentication(
                     usernameEditText.text.toString(),
                     passwordEditText.text.toString(),
-                    true
+                    false
                 )
             }
             false
@@ -106,9 +103,11 @@ class AuthFragment : Fragment() {
             loginViewModel.tryAuthentication(
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString(),
-                true
+                false
             )
         }
+
+
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {

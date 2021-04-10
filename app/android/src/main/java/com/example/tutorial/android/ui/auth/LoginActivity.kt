@@ -1,13 +1,12 @@
 package com.example.tutorial.android.ui.auth
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tutorial.android.R
 import com.example.tutorial.android.ui.auth.ui.login.AuthFragment
-import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,9 +17,13 @@ class LoginActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.login_activity)
+//        val changeAuth: TextView = findViewById(R.id.change_authentication)
+//        changeAuth.setOnClickListener {
+//
+//        }
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.auth_container, AuthFragment.newInstance())
+                .replace(R.id.login_container, AuthFragment.newInstance())
                 .commitNow()
         }
     }
