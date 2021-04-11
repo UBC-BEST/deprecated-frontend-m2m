@@ -1,10 +1,12 @@
 package com.example.tutorial.android.ui.onboarding
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tutorial.android.R
+import com.example.tutorial.android.ui.main.HomeActivity
 
 
 class SelectTrainingActivity : AppCompatActivity() {
@@ -51,6 +53,11 @@ class SelectTrainingActivity : AppCompatActivity() {
          */
         checkMarkButton.setOnClickListener {
             val chosenTraining = trainingSelection.filter { (_, v) -> v }
+            val intent = Intent(this@SelectTrainingActivity, HomeActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString("training", chosenTraining.keys.toString())
+            intent.putExtras(bundle)
+            startActivity(intent)
         }
 
         /**

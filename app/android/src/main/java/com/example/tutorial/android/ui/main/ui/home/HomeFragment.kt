@@ -27,16 +27,9 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-        val logoutButton: Button = root.findViewById(R.id.logout)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        homeViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
-        logoutButton.setOnClickListener {
-            val firebaseAuth = FirebaseAuth.getInstance()
-            firebaseAuth.signOut()
-            val intent = Intent(activity, AuthActivity::class.java)
-            startActivity(intent)
-        }
         return root
     }
 }

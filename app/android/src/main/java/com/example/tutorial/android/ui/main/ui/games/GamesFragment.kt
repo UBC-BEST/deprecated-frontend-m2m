@@ -23,7 +23,7 @@ class GamesFragment : Fragment() {
             ViewModelProvider(this).get(GamesViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_games, container, false)
         val textView: TextView = root.findViewById(R.id.text_games)
-        gamesViewModel.text.observe(viewLifecycleOwner, Observer {
+        gamesViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root

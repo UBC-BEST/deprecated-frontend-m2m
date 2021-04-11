@@ -23,7 +23,7 @@ class DataFragment : Fragment() {
             ViewModelProvider(this).get(DataViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_data, container, false)
         val textView: TextView = root.findViewById(R.id.text_data)
-        dataViewModel.text.observe(viewLifecycleOwner, Observer {
+        dataViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root

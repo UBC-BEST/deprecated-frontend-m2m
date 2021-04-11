@@ -17,8 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.example.tutorial.android.ui.auth.AuthActivity"
-            android:label="@string/app_name"
-            android:windowSoftInputMode="adjustResize" />
+            android:label="@string/app_name" />
         <activity
             android:name="com.example.tutorial.android.ui.onboarding.LandingActivity"
             android:label="@string/app_name" />
