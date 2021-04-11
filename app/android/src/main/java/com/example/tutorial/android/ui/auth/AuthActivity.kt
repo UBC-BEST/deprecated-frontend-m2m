@@ -1,12 +1,11 @@
 package com.example.tutorial.android.ui.auth
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tutorial.android.R
-import com.example.tutorial.android.ui.auth.ui.login.AuthFragment
+import com.example.tutorial.android.ui.auth.ui.login.LoginFragment
 
-class LoginActivity : AppCompatActivity() {
+class AuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,14 +15,10 @@ class LoginActivity : AppCompatActivity() {
             println(e)
         }
 
-        setContentView(R.layout.login_activity)
-//        val changeAuth: TextView = findViewById(R.id.change_authentication)
-//        changeAuth.setOnClickListener {
-//
-//        }
+        setContentView(R.layout.activity_login)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.login_container, AuthFragment.newInstance())
+                .replace(R.id.login_container, LoginFragment.newInstance())
                 .commitNow()
         }
     }

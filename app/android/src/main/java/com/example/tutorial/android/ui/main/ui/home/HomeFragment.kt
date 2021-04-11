@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.tutorial.android.R
-import com.example.tutorial.android.ui.auth.LoginActivity
+import com.example.tutorial.android.ui.auth.AuthActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment : Fragment() {
@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
         logoutButton.setOnClickListener {
             val firebaseAuth = FirebaseAuth.getInstance()
             firebaseAuth.signOut()
-            val intent = Intent(activity, LoginActivity::class.java)
+            val intent = Intent(activity, AuthActivity::class.java)
             startActivity(intent)
         }
         return root

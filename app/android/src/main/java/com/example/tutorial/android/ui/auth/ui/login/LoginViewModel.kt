@@ -50,7 +50,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
                             )
                         Log.d("THIS IS FROM THE LOGIN VIEW MODEL", "SignUp was successful.")
                     } else {
-                        _loginResult.value = LoginResult(error = R.string.login_failed)
+                        _loginResult.value = LoginResult(error = R.string.login_failed) // TODO: Fis this
                     }
                 }
         } catch (e: FirebaseAuthUserCollisionException) {

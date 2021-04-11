@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +18,10 @@ import com.example.tutorial.android.R
 import com.example.tutorial.android.ui.main.HomeActivity
 import com.example.tutorial.android.ui.onboarding.SelectTrainingActivity
 
-class AuthFragment : Fragment() {
+class SignUpFragment : Fragment() {
 
     companion object {
-        fun newInstance() = AuthFragment()
+        fun newInstance() = SignUpFragment()
     }
 
     private lateinit var loginViewModel: LoginViewModel
@@ -30,7 +31,7 @@ class AuthFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        return inflater.inflate(R.layout.fragment_signup, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,19 +39,20 @@ class AuthFragment : Fragment() {
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
-        val usernameEditText = view.findViewById<EditText>(R.id.email)
+        val emailEditText = view.findViewById<EditText>(R.id.email)
+        val nameEditText = view.findViewById<EditText>(R.id.name)
         val passwordEditText = view.findViewById<EditText>(R.id.password)
-        val loginButton = view.findViewById<Button>(R.id.login)
-        val loadingProgressBar = view.findViewById<ProgressBar>(R.id.loading)
+        val signUpButton = view.findViewById<Button>(R.id.sign_up)
+        val changeAuthentication = view.findViewById<TextView>(R.id.change_authentication)
 
         loginViewModel.loginFormState.observe(viewLifecycleOwner,
             Observer { loginFormState ->
                 if (loginFormState == null) {
                     return@Observer
                 }
-                loginButton.isEnabled = loginFormState.isDataValid
+                signUpButton.isEnabled = loginFormState.isDataValid
                 loginFormState.usernameError?.let {
-                    usernameEditText.error = getString(it)
+                    emailEditText.error = getString(it)
                 }
                 loginFormState.passwordError?.let {
                     passwordEditText.error = getString(it)
@@ -60,7 +62,6 @@ class AuthFragment : Fragment() {
         loginViewModel.loginResult.observe(viewLifecycleOwner,
             Observer { loginResult ->
                 loginResult ?: return@Observer
-                loadingProgressBar.visibility = View.GONE
                 loginResult.error?.let {
                     showLoginFailed(it)
                 }
@@ -80,44 +81,42 @@ class AuthFragment : Fragment() {
 
             override fun afterTextChanged(s: Editable) {
                 loginViewModel.loginDataChanged(
-                    usernameEditText.text.toString(),
+                    emailEditText.text.toString(),
                     passwordEditText.text.toString()
                 )
             }
         }
-        usernameEditText.addTextChangedListener(afterTextChangedListener)
+        emailEditText.addTextChangedListener(afterTextChangedListener)
         passwordEditText.addTextChangedListener(afterTextChangedListener)
         passwordEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 loginViewModel.tryAuthentication(
-                    usernameEditText.text.toString(),
+                    emailEditText.text.toString(),
                     passwordEditText.text.toString(),
-                    false
+                    true
                 )
             }
             false
         }
 
-        loginButton.setOnClickListener {
-            loadingProgressBar.visibility = View.VISIBLE
+        signUpButton.setOnClickListener {
             loginViewModel.tryAuthentication(
-                usernameEditText.text.toString(),
+                emailEditText.text.toString(),
                 passwordEditText.text.toString(),
-                false
+                true
             )
         }
 
-
+        changeAuthentication.setOnClickListener {
+            Log.d("CHANGE AUTH", "Change auth has been pressed")
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(((view as ViewGroup).parent as View).id, LoginFragment.newInstance())
+                ?.commitNow()
+        }
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val newUser = model.newUser
-        val displayName = model.displayName
-        if (newUser) {
-            startActivity(Intent(activity, SelectTrainingActivity::class.java))
-        } else {
-            startActivity(Intent(activity, HomeActivity::class.java))
-        }
+        startActivity(Intent(activity, SelectTrainingActivity::class.java))
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
