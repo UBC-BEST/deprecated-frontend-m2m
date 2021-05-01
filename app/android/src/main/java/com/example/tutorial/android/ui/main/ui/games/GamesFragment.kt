@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.view.marginBottom
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.tutorial.android.R
@@ -24,10 +26,10 @@ class GamesFragment : Fragment() {
             ViewModelProvider(this).get(GamesViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_games, container, false)
         val textView: TextView = root.findViewById(R.id.text_games)
-        val startGameButton: Button = root.findViewById(R.id.start_game)
-        val flappyBirdButton: Button = root.findViewById(R.id.start_flappy_birb)
+        val startGameButton: ImageButton = root.findViewById(R.id.start_game)
+        val flappyBirdButton: ImageButton = root.findViewById(R.id.start_flappy_birb)
+
         gamesViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
         })
         startGameButton.setOnClickListener {
             val intent = Intent(activity, TappingGameActivity::class.java)
