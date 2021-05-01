@@ -49,17 +49,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <ImageButton
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="25dp"
                 android:background="@drawable/ic_green_card"
+                android:text="HELLO"
                 app:layout_constraintBottom_toTopOf="@+id/exercises_list"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-            </ImageButton>
+            </Button>
 
             <LinearLayout
                 android:id="@+id/exercises_list"
@@ -92,21 +93,21 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent">
 
-                        <ImageButton
+                        <Button
                             android:id="@+id/exercise1"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_margin="8dp"
                             android:background="@drawable/ic_light_blue_tappable" />
 
-                        <ImageButton
+                        <Button
                             android:id="@+id/exercise2"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_margin="8dp"
                             android:background="@drawable/ic_purple_tappable" />
 
-                        <ImageButton
+                        <Button
                             android:id="@+id/exercise3"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
@@ -147,21 +148,21 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent">
 
-                        <ImageButton
+                        <Button
                             android:id="@+id/start_game"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_margin="8dp"
                             android:background="@drawable/ic_orange_tappable" />
 
-                        <ImageButton
+                        <Button
                             android:id="@+id/start_flappy_birb"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_margin="8dp"
                             android:background="@drawable/ic_blue_tappable" />
 
-                        <ImageButton
+                        <Button
                             android:id="@+id/another_game"
                             android:layout_width="150dp"
                             android:layout_height="150dp"

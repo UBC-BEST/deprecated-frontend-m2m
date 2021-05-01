@@ -26,8 +26,8 @@ class GamesFragment : Fragment() {
             ViewModelProvider(this).get(GamesViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_games, container, false)
         val textView: TextView = root.findViewById(R.id.text_games)
-        val startGameButton: ImageButton = root.findViewById(R.id.start_game)
-        val flappyBirdButton: ImageButton = root.findViewById(R.id.start_flappy_birb)
+        val startGameButton: Button = root.findViewById(R.id.start_game)
+        val flappyBirdButton: Button = root.findViewById(R.id.start_flappy_birb)
 
         gamesViewModel.text.observe(viewLifecycleOwner, {
         })
