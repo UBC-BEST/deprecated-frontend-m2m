@@ -25,11 +25,16 @@ class GamesFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_games, container, false)
         val textView: TextView = root.findViewById(R.id.text_games)
         val startGameButton: Button = root.findViewById(R.id.start_game)
+        val flappyBirdButton: Button = root.findViewById(R.id.start_flappy_birb)
         gamesViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         startGameButton.setOnClickListener {
             val intent = Intent(activity, TappingGameActivity::class.java)
+            startActivity(intent)
+        }
+        flappyBirdButton.setOnClickListener {
+            val intent = Intent(activity, FlappyGameActivity::class.java)
             startActivity(intent)
         }
         return root

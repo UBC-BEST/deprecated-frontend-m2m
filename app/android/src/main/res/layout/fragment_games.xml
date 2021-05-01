@@ -23,9 +23,19 @@
         android:id="@+id/start_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Game"
+        android:text="Start Test Game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_games" />
+
+    <Button
+        android:id="@+id/start_flappy_birb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Flappy Bird Game"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/start_game" />
 </androidx.constraintlayout.widget.ConstraintLayout>

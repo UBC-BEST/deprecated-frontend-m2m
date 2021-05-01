@@ -9,14 +9,12 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.example.tutorial.android.R
 import com.example.tutorial.android.ui.main.ui.games.Background
-import com.example.tutorial.android.ui.main.ui.games.Player
 
 
-class TappingGameView(context: Context?, attrs: AttributeSet?) : SurfaceView(context, attrs),
+class FlappyGameView(context: Context?, attrs: AttributeSet?) : SurfaceView(context, attrs),
     SurfaceHolder.Callback {
-    private val thread: TappingGameThread
-    private var bird: Bird? = null
-    private var player: Player? = null
+    private val thread: FlappyGameThread
+    private var bird: FlappyBird? = null
     private var background: Background? = null
 
     private var touched: Boolean = false
@@ -25,7 +23,7 @@ class TappingGameView(context: Context?, attrs: AttributeSet?) : SurfaceView(con
 
     init {
         holder.addCallback(this)
-        thread = TappingGameThread(holder, this)
+        thread = FlappyGameThread(holder, this)
     }
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
@@ -37,8 +35,7 @@ class TappingGameView(context: Context?, attrs: AttributeSet?) : SurfaceView(con
             Background(BitmapFactory.decodeResource(resources, R.drawable.cleaner_bg_small))
 
         // game object
-        player = Player(BitmapFactory.decodeResource(resources, R.drawable.birb))
-        bird = Bird(BitmapFactory.decodeResource(resources, R.drawable.birb))
+        bird = FlappyBird(BitmapFactory.decodeResource(resources, R.drawable.birb))
         // start game thread
         thread.setRunning(true)
         thread.start()
@@ -61,7 +58,7 @@ class TappingGameView(context: Context?, attrs: AttributeSet?) : SurfaceView(con
     fun update() {
         bird!!.update()
         if (touched) {
-            player!!.updateTouch(touchX, touchY)
+            bird!!.updateTouch()
         }
     }
 
@@ -70,7 +67,6 @@ class TappingGameView(context: Context?, attrs: AttributeSet?) : SurfaceView(con
         if (canvas != null) {
             background!!.draw(canvas)
             bird!!.draw(canvas)
-            player!!.draw(canvas)
         }
     }
 
