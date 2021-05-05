@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.TextView
-import androidx.core.view.marginBottom
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.tutorial.android.R
@@ -22,6 +21,7 @@ class GamesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity?)?.supportActionBar?.hide()
         gamesViewModel =
             ViewModelProvider(this).get(GamesViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_games, container, false)

@@ -2,22 +2,22 @@
 
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context=".ui.main.ui.games.GamesFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
         android:paddingBottom="?android:attr/actionBarSize"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".ui.main.ui.games.GamesFragment">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView
             android:id="@+id/text_games"
@@ -35,11 +35,10 @@
             android:id="@+id/game_screen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="35dp"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -142,7 +141,7 @@
 
                     <LinearLayout
                         android:id="@+id/games__inner_list"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
