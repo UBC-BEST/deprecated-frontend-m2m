@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tutorial.android.R
-import com.example.tutorial.android.ui.auth.LoginActivity
+import com.example.tutorial.android.ui.auth.AuthActivity
 
 
 class WalkThroughActivity : AppCompatActivity() {
@@ -34,7 +34,7 @@ class WalkThroughActivity : AppCompatActivity() {
                 handPhoneButton.setOnClickListener {
                     startActivity(
                         Intent(
-                            this@WalkThroughActivity, LoginActivity::class.java
+                            this@WalkThroughActivity, AuthActivity::class.java
                         )
                     )
                 }
