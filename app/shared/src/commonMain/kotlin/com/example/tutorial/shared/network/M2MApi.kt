@@ -18,7 +18,7 @@ class M2MApi {
         }
     }
 
-    private fun getUser(user: FirebaseUser) {
+    private suspend fun getUser(user: FirebaseUser) {
         return httpClient.get(BASE_URL + ENDPOINT_USER) {
             headers {
                 append("Authorization", user.getIdToken() )
@@ -27,7 +27,7 @@ class M2MApi {
     }
 
     // TODO: Merge both POST and PUT endpoints on the backend
-    private fun upsertUser(user: FirebaseUser) {
+    private suspend fun upsertUser(user: FirebaseUser) {
         return httpClient.post(BASE_URL + ENDPOINT_USER) {
             headers {
                 append("Authorization", user.getIdToken() )
