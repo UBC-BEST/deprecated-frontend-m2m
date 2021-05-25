@@ -1,4 +1,4 @@
-# 👋 the mobile and frontend repo for m2m. 
+# DEPRECATED
 [![Android Actions Status](https://github.com/UBC-BEST/frontend-m2m/workflows/Android%20CI/badge.svg)](https://github.com/UBC-BEST/frontend-m2m/actions)
 
 ## Getting Started - General 
